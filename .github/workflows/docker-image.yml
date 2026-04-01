@@ -14,5 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag dkalabsky:$(date +%s)
+    - name: Login to Docker Hub
+      run: echo dckr_pat_QjDnjwf1n5u7N9v620eB-rAGjFg | docker login -u dkalabsky@gmail.com --password-stdin
+    
+    - name: Build
+      run: docker build -t dkalabsky/jsoncrack:latest .
+    
+    - name: Push
+      run: docker push dkalabsky/jsoncrack:latest
+
